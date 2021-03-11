@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CloudProviderLibrary.Enums;
+﻿using CloudProviderLibrary.Enums;
 using CloudProviderLibrary.Models;
+using System.Collections.Generic;
 
 namespace CloudProvider.Api.ViewModels.AzureViewModels
 {
     public class CreateAzureViewModel : CreateViewModel
     {
-        public override CreateCloudServiceProviderModel ToModel(CreateViewModel model)
+        public override CreateCloudServiceProviderModel ToCreateCloudServiceProviderModel()
         {
-            model.CloudProvider = CloudServiceProvidersEnum.Azure;
-            return base.ToModel(model);
+            return new CreateCloudServiceProviderModel(CloudServiceProvidersEnum.Azure, InfrastructureName, ResourceType, ResourceContent);
         }
     }
 }

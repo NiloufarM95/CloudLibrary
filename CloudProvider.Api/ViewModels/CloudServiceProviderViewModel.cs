@@ -1,35 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CloudProviderLibrary.Enums;
+﻿using CloudProviderLibrary.Enums;
 using CloudProviderLibrary.Models;
+using System.Collections.Generic;
 
 namespace CloudProvider.Api.ViewModels
 {
-    public class CloudServiceProviderViewModel
+    public abstract class CloudServiceProviderViewModel
     {
-        public CloudServiceProvidersEnum CloudProvider { get; set; }
         public string InfrastructureName { get; set; }
     }
 
-    public class CreateViewModel:CloudServiceProviderViewModel
+    public abstract class CreateViewModel : CloudServiceProviderViewModel
     {
         public ResourceTypesEnum ResourceType { get; set; }
         public IDictionary<string, string> ResourceContent { get; set; }
 
-        public virtual CreateCloudServiceProviderModel ToModel(CreateViewModel model)
-        {
-            return new CreateCloudServiceProviderModel(
-                model.CloudProvider,
-                model.InfrastructureName,
-                model.ResourceType,
-                model.ResourceContent);
-        }
+        public abstract CreateCloudServiceProviderModel ToCreateCloudServiceProviderModel();
+
+
     }
 
-    public class DeleteViewModel:CloudServiceProviderViewModel
+    public abstract class DeleteViewModel : CloudServiceProviderViewModel
     {
-        public virtual DeleteCloudServiceProviderModel ToModel(DeleteViewModel model) => new DeleteCloudServiceProviderModel(model.CloudProvider, model.InfrastructureName);
+        public abstract DeleteCloudServiceProviderModel ToDeleteCloudServiceProviderModel();
     }
 }
